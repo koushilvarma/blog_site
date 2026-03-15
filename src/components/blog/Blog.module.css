@@ -197,3 +197,22 @@
 [data-theme='dark'] .quillEditor .ql-snow .ql-picker-options {
   background-color: var(--bg-tertiary);
 }
+
+@media (max-width: 640px) {
+  .postForm {
+    padding: 1.5rem;
+  }
+  .formActions {
+    flex-direction: column-reverse;
+    margin-top: 2rem;
+  }
+  .draftBanner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .draftBannerActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
