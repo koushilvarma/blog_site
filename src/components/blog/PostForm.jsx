@@ -6,6 +6,9 @@ import { Button } from '../common/Button';
 import { Input } from '../common/Input';
 import styles from './Blog.module.css';
 
+// ReactQuill sometimes crashes on initial render in strict mode Vite with functional components unless handled.
+const Editor = ReactQuill;
+
 export const PostForm = ({ initialData, onSubmit, isEditing }) => {
   const { register, handleSubmit, control, formState: { errors } } = useForm({
     defaultValues: {
@@ -60,7 +63,7 @@ export const PostForm = ({ initialData, onSubmit, isEditing }) => {
           defaultValue={initialData?.content || ''}
           rules={{ required: 'Post content is required' }}
           render={({ field }) => (
-            <ReactQuill 
+            <Editor 
               theme="snow" 
               value={field.value} 
               onChange={field.onChange}

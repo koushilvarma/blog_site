@@ -4,7 +4,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useLocalStorage('inkwell_theme', 'light');
+  const [theme, setTheme] = useLocalStorage('inkwell_theme', 'dark');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
