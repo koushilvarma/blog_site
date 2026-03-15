@@ -1,0 +1,68 @@
+.profileHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 3rem;
+}
+.profileInfo {
+  flex: 1;
+}
+.profileName {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.profileBio {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  line-height: 1.6;
+}
+.profileStats {
+  display: flex;
+  gap: 2.5rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+.statItem strong {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-heading);
+}
+.editForm {
+  background-color: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+.formActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+.postsSection {
+  margin-bottom: 4rem;
+}
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 640px) {
+  .profileHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .profileStats {
+    justify-content: center;
+    gap: 1.5rem;
+  }
+}

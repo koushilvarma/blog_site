@@ -1,0 +1,78 @@
+.postForm {
+  background-color: var(--bg-secondary);
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.editorWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.editorLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.quillEditor {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  min-height: 300px;
+}
+.quillEditor .ql-toolbar {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+}
+.quillEditor .ql-container {
+  border-color: var(--border-color);
+  border-bottom-left-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  min-height: 250px;
+}
+.editorError {
+  font-size: 0.75rem;
+  color: var(--error);
+}
+.statusToggle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.selectStatus {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem;
+}
+
+[data-theme='dark'] .quillEditor .ql-snow .ql-stroke {
+  stroke: var(--text-primary);
+}
+[data-theme='dark'] .quillEditor .ql-snow .ql-fill {
+  fill: var(--text-primary);
+}
+[data-theme='dark'] .quillEditor .ql-snow .ql-picker {
+  color: var(--text-primary);
+}
+[data-theme='dark'] .quillEditor .ql-snow .ql-picker-options {
+  background-color: var(--bg-tertiary);
+}
