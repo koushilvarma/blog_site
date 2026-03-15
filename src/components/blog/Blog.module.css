@@ -42,6 +42,126 @@
   font-size: 0.75rem;
   color: var(--error);
 }
+
+/* Markdown Toolbar */
+.markdownToolbar {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+.toolbarBtn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.toolbarBtn:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+.textareaWithToolbar {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+/* Tag Input */
+.tagInputContainer {
+  margin-bottom: 1.5rem;
+}
+.tagPillsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-primary);
+  min-height: 48px;
+  align-items: center;
+}
+.tagPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+}
+.removeTagBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+  transition: color var(--transition-fast);
+}
+.removeTagBtn:hover {
+  color: var(--error);
+}
+.tagInputField {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  flex: 1;
+  min-width: 120px;
+  font-size: 0.9375rem;
+}
+
+/* Image Preview */
+.coverPreviewWrapper {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  height: 200px;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+.coverPreviewImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Save / Publish Banner & Actions */
+.draftBanner {
+  background-color: color-mix(in srgb, var(--accent-primary) 10%, transparent);
+  border-left: 4px solid var(--accent-primary);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.draftBannerActions {
+  display: flex;
+  gap: 0.5rem;
+}
 .statusToggle {
   display: flex;
   align-items: center;
@@ -59,9 +179,10 @@
 .formActions {
   display: flex;
   justify-content: flex-end;
-  margin-top: 2rem;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
   border-top: 1px solid var(--border-color);
-  padding-top: 1.5rem;
 }
 
 [data-theme='dark'] .quillEditor .ql-snow .ql-stroke {

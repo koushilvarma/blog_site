@@ -2,13 +2,38 @@
   display: flex;
   align-items: flex-start;
   gap: 2.5rem;
-  padding: 3rem 0;
+  padding: 0 1rem 3rem 1rem;
   border-bottom: 1px solid var(--border-color);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+  position: relative;
 }
+
+.bannerImage {
+  width: 100%;
+  height: 200px;
+  border-radius: var(--radius-lg);
+  margin-bottom: -4rem;
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.3);
+}
+
+.avatarWrapper {
+  border: 6px solid var(--bg-primary);
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  position: relative;
+  z-index: 2;
+}
+
 .profileInfo {
   flex: 1;
+  padding-top: 5rem;
+  z-index: 1;
 }
+
+.editProfileBtn {
+  margin-top: 0.5rem;
+}
+
 .profileName {
   font-family: var(--font-heading);
   font-size: 2.5rem;
@@ -17,52 +42,126 @@
 .profileBio {
   color: var(--text-secondary);
   font-size: 1.125rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
   max-width: 600px;
   line-height: 1.6;
 }
 .profileStats {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
   color: var(--text-muted);
   font-size: 0.875rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.statItem {
+  display: flex;
+  flex-direction: column;
 }
 .statItem strong {
   color: var(--text-primary);
-  font-size: 1.5rem;
-  display: block;
+  font-size: 1.75rem;
   margin-bottom: 0.25rem;
   font-family: var(--font-heading);
+  line-height: 1;
 }
+.statItem span {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.statDivider {
+  width: 1px;
+  height: 2rem;
+  background-color: var(--border-color);
+}
+
 .editForm {
   background-color: var(--bg-secondary);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
+  margin-top: -3rem;
 }
 .formActions {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
-  margin-top: 1.5rem;
-}
-.postsSection {
-  margin-bottom: 4rem;
-}
-.sectionTitle {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
-  margin-bottom: 2rem;
+  margin-top: 2.5rem;
 }
 
-@media (max-width: 640px) {
+/* Tabs */
+.profileTabs {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 1rem;
+}
+.tabBtn {
+  background: none;
+  border: none;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 1rem 0;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+.tabBtn:hover {
+  color: var(--text-primary);
+}
+.tabBtn.activeTab {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.tabBtn.activeTab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--accent-primary);
+}
+
+.postsSection {
+  margin-bottom: 6rem;
+}
+
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
   .profileHeader {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 0 1rem 2rem 1rem;
+  }
+  .profileInfo {
+    padding-top: 1rem;
+  }
+  .profileInfo > div:first-child {
+    flex-direction: column;
+    align-items: center;
+  }
+  .editProfileBtn {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
   }
   .profileStats {
     justify-content: center;
-    gap: 1.5rem;
+  }
+  .statDivider {
+    display: none;
+  }
+  .profileTabs {
+    justify-content: center;
   }
 }

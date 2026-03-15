@@ -1,20 +1,50 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, MessageSquare } from 'lucide-react';
+import { Heart, MessageSquare, Bookmark, Trash2 } from 'lucide-react';
 import { calculateReadTime } from '../../utils/readTime';
 import { formatTimeAgo } from '../../utils/formatDate';
 import { Avatar } from '../common/Avatar';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useToast } from '../../context/ToastContext';
 import styles from './PostCard.module.css';
 
-export const PostCard = ({ post, featured = false }) => {
+export const PostCard = ({ post, featured = false, showRemove = false, onRemove }) => {
+  const [bookmarks, setBookmarks] = useLocalStorage('inkwell_bookmarks', []);
+  const addToast = useToast();
+  
   if (!post) return null;
+
+  const isBookmarked = bookmarks.includes(post.id);
+
+  const toggleBookmark = (e) => {
+    e.preventDefault(); 
+    if (isBookmarked) {
+      setBookmarks(bookmarks.filter(id => id !== post.id));
+      addToast('Removed from bookmarks', 'info');
+      if (onRemove) onRemove(post.id);
+    } else {
+      setBookmarks([...bookmarks, post.id]);
+      addToast('Saved to bookmarks', 'success');
+    }
+  };
 
   return (
     <article className={`${styles.card} ${featured ? styles.featured : ''}`}>
       {post.coverImage && (
-        <Link to={`/post/${post.id}`} className={styles.imageLink}>
-          <img src={post.coverImage} alt={post.title} className={styles.image} loading="lazy" />
-        </Link>
+        <div style={{ position: 'relative' }} className={styles.imageLink}>
+          <Link to={`/post/${post.id}`} style={{ display: 'block', height: '100%' }}>
+            <img src={post.coverImage} alt={post.title} className={styles.image} loading="lazy" />
+          </Link>
+          <button 
+            className={`${styles.bookmarkBtn} ${isBookmarked && !showRemove ? styles.bookmarked : ''}`}
+            onClick={toggleBookmark}
+            style={showRemove ? { backgroundColor: 'var(--error)' } : {}}
+            aria-label={showRemove ? "Remove absolute bookmark" : isBookmarked ? "Remove bookmark" : "Save bookmark"}
+            title={showRemove ? "Remove" : isBookmarked ? "Remove from bookmarks" : "Save for later"}
+          >
+            {showRemove ? <Trash2 size={18} /> : <Bookmark size={18} fill={isBookmarked ? "currentColor" : "none"} />}
+          </button>
+        </div>
       )}
       
       <div className={styles.content}>

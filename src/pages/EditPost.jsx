@@ -30,8 +30,13 @@ export const EditPost = () => {
 
   const handleSubmit = (postData) => {
     updatePost(id, postData);
-    addToast('Post updated successfully!', 'success');
-    navigate(`/post/${id}`);
+    if (postData.status === 'draft') {
+      addToast('Draft updated successfully!', 'success');
+      navigate('/profile');
+    } else {
+      addToast('Post updated successfully!', 'success');
+      navigate(`/post/${id}`);
+    }
   };
 
   if (!post) {

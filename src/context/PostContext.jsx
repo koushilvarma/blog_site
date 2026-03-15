@@ -53,7 +53,9 @@ const postReducer = (state, action) => {
         if (post.id === action.payload.postId) {
           return {
             ...post,
-            comments: post.comments.filter(c => c.id !== action.payload.commentId)
+            comments: post.comments.filter(c => 
+              c.id !== action.payload.commentId && c.parentId !== action.payload.commentId
+            )
           };
         }
         return post;
@@ -99,19 +101,21 @@ export const PostProvider = ({ children }) => {
     dispatch({ type: ACTIONS.LIKE_POST, payload: { postId, userId } });
   };
 
-  const addComment = (postId, user, content) => {
+  const addComment = (postId, user, content, parentId = null) => {
     const comment = {
       id: generateId(),
       authorId: user.id,
       authorName: user.name,
       authorAvatar: user.avatar,
       content,
+      parentId,
       date: new Date().toISOString()
     };
     dispatch({ type: ACTIONS.ADD_COMMENT, payload: { postId, comment } });
   };
 
   const deleteComment = (postId, commentId) => {
+    // Delete comment and its replies (1 level deep)
     dispatch({ type: ACTIONS.DELETE_COMMENT, payload: { postId, commentId } });
   };
 

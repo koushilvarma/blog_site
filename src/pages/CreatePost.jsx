@@ -13,8 +13,14 @@ export const CreatePost = () => {
 
   const handleSubmit = (postData) => {
     const newPostId = addPost(postData, user);
-    addToast('Post created successfully!', 'success');
-    navigate(`/post/${newPostId}`);
+    
+    if (postData.status === 'draft') {
+      addToast('Draft saved successfully!', 'success');
+      navigate('/profile'); // Drafts are in profile
+    } else {
+      addToast('Post published successfully!', 'success');
+      navigate(`/post/${newPostId}`);
+    }
   };
 
   return (

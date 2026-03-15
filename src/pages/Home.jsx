@@ -3,6 +3,7 @@ import { usePosts } from '../context/PostContext';
 import { usePagination } from '../hooks/usePagination';
 import { useDebounce } from '../hooks/useDebounce';
 import { PostCard } from '../components/blog/PostCard';
+import { PostCardSkeleton } from '../components/blog/PostCardSkeleton';
 import { Button } from '../components/common/Button';
 import { Input } from '../components/common/Input';
 import { Search } from 'lucide-react';
@@ -16,6 +17,15 @@ export const Home = () => {
   const [activeTag, setActiveTag] = useState('');
   const [sortBy, setSortBy] = useState('latest');
   const debouncedSearch = useDebounce(searchTerm, 300);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate remote fetch for skeletons
+  React.useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, [debouncedSearch, activeTag, sortBy]);
 
   // Extract all tags for the tag cloud
   const allTags = useMemo(() => {
@@ -78,7 +88,11 @@ export const Home = () => {
         <section>
           {featuredPost && (
             <div style={{ marginBottom: '4rem' }}>
-              <PostCard post={featuredPost} featured={true} />
+              {isLoading ? (
+                <PostCardSkeleton />
+              ) : (
+                <PostCard post={featuredPost} featured={true} />
+              )}
             </div>
           )}
 
@@ -88,16 +102,25 @@ export const Home = () => {
                activeTag ? `Posts tagged with "${activeTag}"` : 'Latest Reading'}
             </h2>
             <div className={styles.filters}>
-              <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                <option value="latest">Latest</option>
-                <option value="oldest">Oldest</option>
-                <option value="liked">Most Liked</option>
-                <option value="commented">Most Commented</option>
-              </select>
+              <div className={styles.tabPills}>
+                {['latest', 'oldest', 'liked', 'commented'].map(tab => (
+                  <button
+                    key={tab}
+                    className={`${styles.tabPill} ${sortBy === tab ? styles.activeTab : ''}`}
+                    onClick={() => setSortBy(tab)}
+                  >
+                    {tab === 'latest' ? 'Latest' : tab === 'oldest' ? 'Oldest' : tab === 'liked' ? 'Most Liked' : 'Most Commented'}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          {paginatedPosts.length > 0 ? (
+          {isLoading ? (
+            <div className={styles.postsGrid}>
+              {[1, 2, 3, 4, 5, 6].map((n) => <PostCardSkeleton key={n} />)}
+            </div>
+          ) : paginatedPosts.length > 0 ? (
             <>
               <div className={styles.postsGrid}>
                 {paginatedPosts.map(post => (
