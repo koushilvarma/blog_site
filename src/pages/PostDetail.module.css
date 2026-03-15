@@ -48,6 +48,7 @@
   line-height: 1.8;
   color: var(--text-primary);
   margin-bottom: 4rem;
+  white-space: pre-wrap;
 }
 .content h1, .content h2, .content h3 {
   margin-top: 2.5rem;
