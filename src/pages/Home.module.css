@@ -1,19 +1,19 @@
 .homeLayout {
   display: grid;
   grid-template-columns: 1fr 300px;
-  gap: 3rem;
+  gap: 4rem; /* More generous spacing */
 }
 .feedHeader {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
+  align-items: flex-end; /* Align to bottom for varying font sizes */
+  margin-bottom: 2.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border-color);
 }
 .feedTitle {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 .filters select {
   padding: 0.5rem 1rem;

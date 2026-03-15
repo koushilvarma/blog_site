@@ -5,26 +5,30 @@
 }
 .mainContent {
   flex: 1;
-  padding: 2rem 0;
+  padding: 3rem 0; /* Add more breathing room */
 }
 .header {
   border-bottom: 1px solid var(--border-color);
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
   position: sticky;
   top: 0;
   z-index: 100;
   transition: background-color var(--transition-normal);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: color-mix(in srgb, var(--bg-primary) 85%, transparent);
 }
 .navContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 4rem;
+  height: 4.5rem; /* Slightly taller header */
 }
 .logo {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
+  font-style: italic;
   color: var(--text-primary);
   letter-spacing: -0.5px;
 }
@@ -34,15 +38,16 @@
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 .navLink {
   display: flex;
   align-items: center;
   gap: 0.375rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-secondary);
   font-size: 0.9375rem;
+  letter-spacing: 0.3px;
 }
 .navLink:hover {
   color: var(--text-primary);
@@ -55,11 +60,12 @@
   height: 36px;
   border-radius: 50%;
   color: var(--text-secondary);
-  transition: background-color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 .iconBtn:hover {
   background-color: var(--bg-tertiary);
   color: var(--text-primary);
+  transform: scale(1.05);
 }
 .userMenu {
   display: flex;
